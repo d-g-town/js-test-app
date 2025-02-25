@@ -15,7 +15,7 @@ jobs:
             - name: Setup porter
               uses: porter-dev/dev-setup-porter@v0.1.0
               with:
-                private_branch: dgtown/build-notifications
+                version: dgtown-test-cli
                 token: ${{ secrets.PORTER_DEV_CODE_TOKEN}}
             - name: Deploy stack
               timeout-minutes: 30
