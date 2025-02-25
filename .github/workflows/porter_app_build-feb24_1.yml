@@ -13,7 +13,7 @@ jobs:
               id: vars
               run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
             - name: Setup porter
-              uses: porter-dev/dev-setup-porter@v0.0.1
+              uses: porter-dev/dev-setup-porter@v0.1.0
               with:
                 private_branch: dgtown/build-notifications
                 token: ${{ secrets.PORTER_DEV_CODE_TOKEN}}
