@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "[Have a try](http://farter.cn/tetr.js) in your browser.",
   "main": "tetris.js",
-
+  "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
