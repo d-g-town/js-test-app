@@ -21,7 +21,4 @@ while true; do
         log_fatal "Counter reached 10"
         break
     fi
-
-    # Sleep for 0.5 seconds
-    sleep 0.5
 done

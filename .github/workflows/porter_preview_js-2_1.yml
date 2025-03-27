@@ -32,3 +32,12 @@ jobs:
                 PORTER_TOKEN: ${{ secrets.PORTER_APP_1_1 }}
             - name: update-root-domain
               run: porter apply --app js-2 --no-build -x ${GITHUB_HEAD_REF} --variables ROOT_DOMAIN="$(porter app yaml js-2 -x ${GITHUB_HEAD_REF} | yq '.services[] | select(.name == "web") | .domains[0].name')"
+              env:
+                PORTER_APP_NAME: js-2
+                PORTER_CLUSTER: "1"
+                PORTER_HOST: https://dgtown2.withporter.run
+                PORTER_PR_NUMBER: ${{ github.event.number }}
+                PORTER_PROJECT: "1"
+                PORTER_REPO_NAME: ${{ github.event.repository.name }}
+                PORTER_TAG: ${{ steps.vars.outputs.sha_short }}
+                PORTER_TOKEN: ${{ secrets.PORTER_APP_1_1 }}
