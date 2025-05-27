@@ -1,0 +1,32 @@
+version: v2
+name: bbb
+services:
+  - name: web
+    run: node index.jss
+    type: web
+    instances: 1
+    cpuCores: 0.19
+    ramMegabytes: 400
+    terminationGracePeriodSeconds: 30
+    port: 3000
+    domains:
+      - name: web-7-434d6fa6-s45kvqod.withporter.run
+    sleep: false
+    serviceMeshEnabled: false
+  - name: worker
+    run: node index.js
+    type: worker
+    instances: 1
+    cpuCores: 0.19
+    ramMegabytes: 400
+    terminationGracePeriodSeconds: 30
+build:
+  context: ./
+  method: pack
+  builder: heroku/buildpacks:20
+  buildpacks:
+    - heroku/nodejs
+deploymentStrategy:
+  kind: blueGreen
+  blueGreen:
+    group: bg
