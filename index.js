@@ -4,7 +4,7 @@ const app = express();
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-    res.send('Tetris time');
+    res.send('Tetris time!');
 });
 
 var sponsor = process.env.SPONSOR || "unsponsor";
