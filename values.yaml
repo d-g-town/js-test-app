@@ -2,4 +2,3 @@ container:
   port: 3000
 ingress:
   enabled: false
-  
