@@ -13,7 +13,6 @@ services:
   - name: web-2-9858b0db-t1huif5n.withporter.run
   sleep: false
   serviceMeshEnabled: false
-  nodeGroup: b14b8367-19ab-44b1-8819-2deeaee52468
 build:
   context: ./
   method: pack
