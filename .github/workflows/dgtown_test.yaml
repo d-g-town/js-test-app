@@ -4,7 +4,7 @@ on:
       app_name:
         description: 'Porter App Name'
         required: true
-        default: 'jul18'
+        default: 'jul28'
         type: string
       cluster:
         description: 'Porter Cluster ID'
@@ -14,7 +14,7 @@ on:
       deployment_target_id:
         description: 'Porter Deployment Target ID'
         required: true
-        default: 'f79f9636-8b9c-4cc3-a068-5107fe55edfc'
+        default: 'e97e41a7-f1ba-4663-8d0d-c4ea89737216'
         type: string
       host:
         description: 'Porter Host URL'
