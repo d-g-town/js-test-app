@@ -1,4 +1,4 @@
-name: Deploy to jul18
+name: dgtown test
 
 on:
   workflow_dispatch:
