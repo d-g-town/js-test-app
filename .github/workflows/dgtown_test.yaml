@@ -1,5 +1,3 @@
-name: dgtown test
-
 on:
   workflow_dispatch:
     inputs:
@@ -48,7 +46,7 @@ on:
         options:
           - '1'
           - '0'
-
+name: dgtown test
 jobs:
   porter-deploy:
     runs-on: ubuntu-latest
