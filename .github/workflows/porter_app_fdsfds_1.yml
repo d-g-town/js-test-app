@@ -20,7 +20,7 @@ jobs:
               env:
                 PORTER_APP_NAME: fdsfds
                 PORTER_CLUSTER: "1"
-                PORTER_DEPLOYMENT_TARGET_ID: de6a018a-b843-4aec-ba8c-5c93d077a957
+                PORTER_DEPLOYMENT_TARGET_ID: 1810f5f5-fd71-4d48-b4ee-6fe5abd97f5b
                 PORTER_HOST: https://dgtown2.withporter.run
                 PORTER_PR_NUMBER: ${{ github.event.number }}
                 PORTER_PROJECT: "1"
