@@ -21,7 +21,7 @@ jobs:
                 PORTER_APP_NAME: github
                 PORTER_CLUSTER: "1"
                 PORTER_DEPLOYMENT_TARGET_ID: 16a150ad-aedd-4eb0-a4e8-2930ec049289
-                PORTER_HOST: http://localhost:8080
+                PORTER_HOST: https://dgtown2.withporter.run
                 PORTER_PR_NUMBER: ${{ github.event.number }}
                 PORTER_PROJECT: "1"
                 PORTER_REPO_NAME: ${{ github.event.repository.name }}
