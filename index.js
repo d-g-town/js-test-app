@@ -99,7 +99,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  logJSON("info", "Root endpoint accessed", {
+  logJSON("info", "Root endpoint accessed...", {
     route: {
       path: "/",
       method: "GET",
