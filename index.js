@@ -141,7 +141,7 @@ app.get("/", (req, res) => {
 var sponsor = process.env.SPONSOR || "unsponsor";
 
 app.listen(3000, () => {
-  logJSON("info", "Server started successfully", {
+  logJSON("info", "Server started successfully!", {
     server: {
       network: {
         port: 3000,
