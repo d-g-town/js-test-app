@@ -25,3 +25,18 @@ jobs:
                 PORTER_PROJECT: "1"
                 PORTER_TAG: ${{ steps.vars.outputs.sha_short }}
                 PORTER_TOKEN: ${{ secrets.PORTER_APP_1_639153361 }}
+            - name: Get maxReplicas
+              id: hpa
+              run: echo "max_replicas=$(porter kubectl -- get hpa js-test-app-web -n default -o jsonpath='{.spec.maxReplicas}')" >> $GITHUB_OUTPUT
+              env:
+                PORTER_CLUSTER: "2"
+                PORTER_HOST: https://dgtown2.withporter.run
+                PORTER_PROJECT: "1"
+                PORTER_TOKEN: ${{ secrets.PORTER_APP_1_639153361 }}
+            - name: Set minReplicas to maxReplicas
+              run: porter kubectl -- patch hpa js-test-app-web -n default --type='json' -p='[{"op":"replace","path":"/spec/minReplicas","value":'${{ steps.hpa.outputs.max_replicas }}'}]'
+              env:
+                PORTER_CLUSTER: "2"
+                PORTER_HOST: https://dgtown2.withporter.run
+                PORTER_PROJECT: "1"
+                PORTER_TOKEN: ${{ secrets.PORTER_APP_1_639153361 }}
