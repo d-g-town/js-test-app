@@ -57,7 +57,7 @@ jobs:
           PORTER_TOKEN: ${{ secrets.PORTER_APP_1_639153361 }}
 
       # Wait for active pods to be running the new image tag
-      - name: Wait for blue-green rollout to complete
+      - name: Wait for new backend to scale up to max
         run: |
           CURRENT_REVISION_ID=$(porter kubectl -- get rollout js-test-app-web -n default -o jsonpath='{.metadata.labels.porter\.run/app-revision-id}')
 
