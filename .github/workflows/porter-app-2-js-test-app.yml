@@ -1,42 +1,107 @@
 "on":
-    push:
-        branches:
-            - master
+  push:
+    branches:
+      - master
 name: Deploy to js-test-app
 jobs:
-    porter-deploy:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
-            - name: Set Github tag
-              id: vars
-              run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-            - name: Setup porter
-              uses: porter-dev/setup-porter@v0.1.0
-            - name: Deploy stack
-              timeout-minutes: 30
-              run: porter apply
-              env:
-                PORTER_APP_NAME: js-test-app
-                PORTER_CLUSTER: "2"
-                PORTER_DEPLOYMENT_TARGET_ID: e68988d7-2505-4f8d-810a-252021357236
-                PORTER_HOST: https://dgtown2.withporter.run
-                PORTER_PROJECT: "1"
-                PORTER_TAG: ${{ steps.vars.outputs.sha_short }}
-                PORTER_TOKEN: ${{ secrets.PORTER_APP_1_639153361 }}
-            - name: Get maxReplicas
-              id: hpa
-              run: echo "max_replicas=$(porter kubectl -- get hpa js-test-app-web -n default -o jsonpath='{.spec.maxReplicas}')" >> $GITHUB_OUTPUT
-              env:
-                PORTER_CLUSTER: "2"
-                PORTER_HOST: https://dgtown2.withporter.run
-                PORTER_PROJECT: "1"
-                PORTER_TOKEN: ${{ secrets.PORTER_APP_1_639153361 }}
-            - name: Set minReplicas to maxReplicas
-              run: porter kubectl -- patch hpa js-test-app-web -n default --type='json' -p='[{"op":"replace","path":"/spec/minReplicas","value":'${{ steps.hpa.outputs.max_replicas }}'}]'
-              env:
-                PORTER_CLUSTER: "2"
-                PORTER_HOST: https://dgtown2.withporter.run
-                PORTER_PROJECT: "1"
-                PORTER_TOKEN: ${{ secrets.PORTER_APP_1_639153361 }}
+  porter-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set Github tag
+        id: vars
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Setup porter
+        uses: porter-dev/setup-porter@v0.1.0
+
+      - name: Deploy stack
+        timeout-minutes: 30
+        run: porter apply
+        env:
+          PORTER_APP_NAME: js-test-app
+          PORTER_CLUSTER: "2"
+          PORTER_DEPLOYMENT_TARGET_ID: e68988d7-2505-4f8d-810a-252021357236
+          PORTER_HOST: https://dgtown2.withporter.run
+          PORTER_PROJECT: "1"
+          PORTER_TAG: ${{ steps.vars.outputs.sha_short }}
+          PORTER_TOKEN: ${{ secrets.PORTER_APP_1_639153361 }}
+
+      # Get HPA values AFTER deploy (deploy enforces dashboard settings)
+      - name: Get maxReplicas
+        id: hpa-max
+        run: echo "max_replicas=$(porter kubectl -- get hpa js-test-app-web -n default -o jsonpath='{.spec.maxReplicas}')" >> $GITHUB_OUTPUT
+        env:
+          PORTER_CLUSTER: "2"
+          PORTER_HOST: https://dgtown2.withporter.run
+          PORTER_PROJECT: "1"
+          PORTER_TOKEN: ${{ secrets.PORTER_APP_1_639153361 }}
+
+      - name: Get minReplicas
+        id: hpa-min
+        run: echo "min_replicas=$(porter kubectl -- get hpa js-test-app-web -n default -o jsonpath='{.spec.minReplicas}')" >> $GITHUB_OUTPUT
+        env:
+          PORTER_CLUSTER: "2"
+          PORTER_HOST: https://dgtown2.withporter.run
+          PORTER_PROJECT: "1"
+          PORTER_TOKEN: ${{ secrets.PORTER_APP_1_639153361 }}
+
+      - name: Set minReplicas to maxReplicas
+        run: porter kubectl -- patch hpa js-test-app-web -n default --type='json' -p='[{"op":"replace","path":"/spec/minReplicas","value":'${{ steps.hpa-max.outputs.max_replicas }}'}]'
+        env:
+          PORTER_CLUSTER: "2"
+          PORTER_HOST: https://dgtown2.withporter.run
+          PORTER_PROJECT: "1"
+          PORTER_TOKEN: ${{ secrets.PORTER_APP_1_639153361 }}
+
+      # Wait for active pods to be running the new image tag
+      - name: Wait for blue-green rollout to complete
+        run: |
+          echo "Waiting for rollout to activate pods with image tag ${{ github.sha }}..."
+          
+          for i in {1..60}; do
+            # Get the activeSelector from the rollout
+            ACTIVE_SELECTOR=$(porter kubectl -- get rollout js-test-app-web -n default -o jsonpath='{.status.blueGreen.activeSelector}')
+            
+            if [ -z "$ACTIVE_SELECTOR" ]; then
+              echo "Attempt $i: No active selector found yet, waiting..."
+              sleep 5
+              continue
+            fi
+            
+            # Count pods with the active selector AND the correct image tag
+            READY_PODS=$(porter kubectl -- get pods -n default \
+              -l "rollouts-pod-template-hash=$ACTIVE_SELECTOR,porter.run/image-tag=${{ github.sha }}" \
+              -o jsonpath='{.items[?(@.status.phase=="Running")].metadata.name}' | wc -w)
+            
+            echo "Attempt $i: Found $READY_PODS running pods with active selector $ACTIVE_SELECTOR and image tag ${{ github.sha }}"
+            
+            if [ "$READY_PODS" -ge "${{ steps.hpa-max.outputs.max_replicas }}" ]; then
+              echo "Rollout complete: $READY_PODS pods running with correct image tag"
+              exit 0
+            fi
+            
+            sleep 5
+          done
+          
+          echo "Timeout waiting for rollout to complete"
+          exit 1
+        env:
+          PORTER_CLUSTER: "2"
+          PORTER_HOST: https://dgtown2.withporter.run
+          PORTER_PROJECT: "1"
+          PORTER_TOKEN: ${{ secrets.PORTER_APP_1_639153361 }}
+
+      # Add any additional deployment steps here (e.g., frontend deploy)
+      # ...
+
+      # Reset minReplicas back to original value
+      - name: Reset minReplicas to original value
+        run: porter kubectl -- patch hpa js-test-app-web -n default --type='json' -p='[{"op":"replace","path":"/spec/minReplicas","value":'${{ steps.hpa-min.outputs.min_replicas }}'}]'
+        env:
+          PORTER_CLUSTER: "2"
+          PORTER_HOST: https://dgtown2.withporter.run
+          PORTER_PROJECT: "1"
+          PORTER_TOKEN: ${{ secrets.PORTER_APP_1_639153361 }}
