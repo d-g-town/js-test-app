@@ -59,7 +59,7 @@ jobs:
       # Wait for active pods to be running the new image tag
       - name: Wait for blue-green rollout to complete
         run: |
-          COMMIT_SHA=$(git rev-parse --short HEAD)
+          COMMIT_SHA=$(git rev-parse HEAD)
                   
           echo "Waiting for rollout to activate pods with image tag $COMMIT_SHA..."
           
