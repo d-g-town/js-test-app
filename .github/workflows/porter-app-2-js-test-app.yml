@@ -85,6 +85,45 @@ jobs:
           PORTER_HOST: https://dgtown2.withporter.run
           PORTER_PROJECT: "1"
           PORTER_TOKEN: ${{ secrets.PORTER_APP_1_639153361 }}
+      # Wait for active pods to be running the new image tag
+      - name: Wait for blue-green rollout to complete
+        run: |
+          CURRENT_REVISION_ID=$(porter kubectl -- get rollout js-test-app-web -n default -o jsonpath='{.metadata.labels.porter\.run/app-revision-id}')
+          
+          echo "Waiting for rollout to activate pods with image tag $COMMIT_SHA..."
+          
+          for i in {1..60}; do
+            # Get the activeSelector from the rollout
+            ACTIVE_SELECTOR=$(porter kubectl -- get rollout js-test-app-web -n default -o jsonpath='{.status.blueGreen.activeSelector}')
+            
+            if [ -z "$ACTIVE_SELECTOR" ]; then
+              echo "Attempt $i: No active selector found yet, waiting..."
+              sleep 15
+              continue
+            fi
+            
+            # Count pods with the active selector AND the correct app revision id
+            READY_PODS=$(porter kubectl -- get pods -n default \
+              -l "rollouts-pod-template-hash=$ACTIVE_SELECTOR,porter.run/app-revision-id=$CURRENT_REVISION_ID" \
+              -o jsonpath='{.items[?(@.status.phase=="Running")].metadata.name}' | wc -w)
+            
+            echo "Attempt $i: Found $READY_PODS running pods with active selector $ACTIVE_SELECTOR and app revision id $CURRENT_REVISION_ID"
+            
+            if [ "$READY_PODS" -ge "${{ steps.hpa-max.outputs.max_replicas }}" ]; then
+              echo "Rollout complete: $READY_PODS pods running with correct image tag"
+              exit 0
+            fi
+            
+            sleep 5
+          done
+          
+          echo "Timeout waiting for rollout to complete"
+          exit 1
+        env:
+          PORTER_CLUSTER: "2"
+          PORTER_HOST: https://dgtown2.withporter.run
+          PORTER_PROJECT: "1"
+          PORTER_TOKEN: ${{ secrets.PORTER_APP_1_639153361 }}
 
       # Add any additional deployment steps here (e.g., frontend deploy)
       # ...
