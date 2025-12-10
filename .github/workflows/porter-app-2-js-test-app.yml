@@ -69,7 +69,7 @@ jobs:
             
             if [ -z "$ACTIVE_SELECTOR" ]; then
               echo "Attempt $i: No active selector found yet, waiting..."
-              sleep 5
+              sleep 15
               continue
             fi
             
