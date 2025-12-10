@@ -59,7 +59,8 @@ jobs:
       # Wait for active pods to be running the new image tag
       - name: Wait for new backend to scale up to max
         run: |
-          CURRENT_REVISION_ID=$(porter kubectl -- get rollout js-test-app-web -n default -o jsonpath='{.metadata.labels.porter\.run/app-revision-id}')
+          ROLLOUT_NAME=js-test-app-web
+          CURRENT_REVISION_ID=$(porter kubectl -- get rollout $ROLLOUT_NAME -n default -o jsonpath='{.metadata.labels.porter\.run/app-revision-id}')
 
           echo "Waiting for rollout to activate pods with image tag $COMMIT_SHA..."
 
