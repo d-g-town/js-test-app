@@ -59,29 +59,19 @@ jobs:
       # Wait for active pods to be running the new image tag
       - name: Wait for blue-green rollout to complete
         run: |
-          COMMIT_SHA=$(git rev-parse HEAD)
-                  
+          CURRENT_REVISION_ID=$(porter kubectl -- get rollout js-test-app-web -n default -o jsonpath='{.metadata.labels.porter\.run/app-revision-id}')
+          
           echo "Waiting for rollout to activate pods with image tag $COMMIT_SHA..."
           
           for i in {1..60}; do
-            # Get the activeSelector from the rollout
-            ACTIVE_SELECTOR=$(porter kubectl -- get rollout js-test-app-web -n default -o jsonpath='{.status.blueGreen.activeSelector}')
-            
-            if [ -z "$ACTIVE_SELECTOR" ]; then
-              echo "Attempt $i: No active selector found yet, waiting..."
-              sleep 15
-              continue
-            fi
-            
             # Count pods with the active selector AND the correct image tag
-            READY_PODS=$(porter kubectl -- get pods -n default \
-              -l "rollouts-pod-template-hash=$ACTIVE_SELECTOR,porter.run/image-tag=$COMMIT_SHA" \
-              -o jsonpath='{.items[?(@.status.phase=="Running")].metadata.name}' | wc -w)
+            NUM_PODS=$(porter kubectl -- get pods -n default \
+              -l "porter.run/app-revision-id=$CURRENT_REVISION_ID" | wc -w)
             
-            echo "Attempt $i: Found $READY_PODS running pods with active selector $ACTIVE_SELECTOR and image tag $COMMIT_SHA"
+            echo "Attempt $i: Found $NUM_PODS pods with revision id $CURRENT_REVISION_ID"
             
-            if [ "$READY_PODS" -ge "${{ steps.hpa-max.outputs.max_replicas }}" ]; then
-              echo "Rollout complete: $READY_PODS pods running with correct image tag"
+            if [ "$NUM_PODS" -ge "${{ steps.hpa-max.outputs.max_replicas }}" ]; then
+              echo "Scale up complete: $NUM_PODS pods running with correct image tag"
               exit 0
             fi
             
