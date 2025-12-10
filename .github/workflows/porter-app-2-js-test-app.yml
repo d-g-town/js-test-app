@@ -59,7 +59,9 @@ jobs:
       # Wait for active pods to be running the new image tag
       - name: Wait for blue-green rollout to complete
         run: |
-          echo "Waiting for rollout to activate pods with image tag ${{ github.sha }}..."
+          COMMIT_SHA=$(git rev-parse --short HEAD)
+                  
+          echo "Waiting for rollout to activate pods with image tag $COMMIT_SHA..."
           
           for i in {1..60}; do
             # Get the activeSelector from the rollout
@@ -73,10 +75,10 @@ jobs:
             
             # Count pods with the active selector AND the correct image tag
             READY_PODS=$(porter kubectl -- get pods -n default \
-              -l "rollouts-pod-template-hash=$ACTIVE_SELECTOR,porter.run/image-tag=${{ github.sha }}" \
+              -l "rollouts-pod-template-hash=$ACTIVE_SELECTOR,porter.run/image-tag=$COMMIT_SHA" \
               -o jsonpath='{.items[?(@.status.phase=="Running")].metadata.name}' | wc -w)
             
-            echo "Attempt $i: Found $READY_PODS running pods with active selector $ACTIVE_SELECTOR and image tag ${{ github.sha }}"
+            echo "Attempt $i: Found $READY_PODS running pods with active selector $ACTIVE_SELECTOR and image tag $COMMIT_SHA"
             
             if [ "$READY_PODS" -ge "${{ steps.hpa-max.outputs.max_replicas }}" ]; then
               echo "Rollout complete: $READY_PODS pods running with correct image tag"
