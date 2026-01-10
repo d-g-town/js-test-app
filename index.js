@@ -51,7 +51,7 @@ app.use((req, res, next) => {
 
   res.on("finish", () => {
     const duration = Date.now() - startTime;
-    logJSON("info", "HTTP request processed", {
+    logJSON("info", "HTTP request processed successfully?", {
       request: {
         method: req.method,
         url: req.url,
