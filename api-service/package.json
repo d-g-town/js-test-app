@@ -1,6 +1,6 @@
 {
   "name": "tetris-scores-api",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Tetris leaderboard and scores API",
   "main": "index.js",
   "scripts": {
