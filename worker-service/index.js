@@ -106,4 +106,6 @@ app.post("/jobs", (req, res) => {
 
 app.listen(PORT, () => {
   log("Server started", { port: PORT });
+  // Initialize analytics pipeline
+  initializeAnalyticsPipeline();
 });
