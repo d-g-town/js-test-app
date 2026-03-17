@@ -22,6 +22,7 @@ const stats = {
   totalScore: 0,
   totalLines: 0,
   highestScore: 0,
+  longestStreak: 0,
   averageScore: 0,
 };
 
