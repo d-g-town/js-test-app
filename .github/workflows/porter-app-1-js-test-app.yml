@@ -20,7 +20,7 @@ jobs:
               env:
                 PORTER_APP_NAME: js-test-app
                 PORTER_CLUSTER: "1"
-                PORTER_DEPLOYMENT_TARGET_ID: ad715b5f-eb9e-49cf-9739-5a6e32fa9d44
+                PORTER_DEPLOYMENT_TARGET_ID: 974e35ba-fba1-4b18-9e37-2fd9da82524a
                 PORTER_HOST: https://dgtown2.withporter.run
                 PORTER_PROJECT: "1"
                 PORTER_TAG: ${{ steps.vars.outputs.sha_short }}
