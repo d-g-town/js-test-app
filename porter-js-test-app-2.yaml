@@ -3,6 +3,7 @@ name: js-test-app-2
 services:
 - name: web
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -12,6 +13,7 @@ services:
   sleep: false
 - name: web-1
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -21,6 +23,7 @@ services:
   sleep: false
 - name: web-2
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -30,6 +33,7 @@ services:
   sleep: false
 - name: web-3
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -39,6 +43,7 @@ services:
   sleep: false
 - name: web-4
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -48,6 +53,7 @@ services:
   sleep: false
 - name: web-5
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -57,6 +63,7 @@ services:
   sleep: false
 - name: web-6
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -66,6 +73,7 @@ services:
   sleep: false
 - name: web-7
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -75,6 +83,7 @@ services:
   sleep: false
 - name: web-8
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -84,6 +93,7 @@ services:
   sleep: false
 - name: web-9
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -93,6 +103,7 @@ services:
   sleep: false
 - name: web-10
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -102,6 +113,7 @@ services:
   sleep: false
 - name: web-11
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -111,6 +123,7 @@ services:
   sleep: false
 - name: web-12
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -120,6 +133,7 @@ services:
   sleep: false
 - name: web-13
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -129,6 +143,7 @@ services:
   sleep: false
 - name: web-14
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -138,6 +153,7 @@ services:
   sleep: false
 - name: web-15
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -147,6 +163,7 @@ services:
   sleep: false
 - name: web-16
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -156,6 +173,7 @@ services:
   sleep: false
 - name: web-17
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -165,6 +183,7 @@ services:
   sleep: false
 - name: web-18
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -174,6 +193,7 @@ services:
   sleep: false
 - name: web-19
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -183,6 +203,7 @@ services:
   sleep: false
 - name: web-20
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -192,6 +213,7 @@ services:
   sleep: false
 - name: web-21
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -201,6 +223,7 @@ services:
   sleep: false
 - name: web-22
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -210,6 +233,7 @@ services:
   sleep: false
 - name: web-23
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -219,6 +243,7 @@ services:
   sleep: false
 - name: web-24
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -228,6 +253,7 @@ services:
   sleep: false
 - name: web-25
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -237,6 +263,7 @@ services:
   sleep: false
 - name: web-26
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -246,6 +273,7 @@ services:
   sleep: false
 - name: web-27
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -255,6 +283,7 @@ services:
   sleep: false
 - name: web-28
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -264,6 +293,7 @@ services:
   sleep: false
 - name: web-29
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -273,6 +303,7 @@ services:
   sleep: false
 - name: web-30
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -282,6 +313,7 @@ services:
   sleep: false
 - name: web-31
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -291,6 +323,7 @@ services:
   sleep: false
 - name: web-32
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -300,6 +333,7 @@ services:
   sleep: false
 - name: web-33
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -309,6 +343,7 @@ services:
   sleep: false
 - name: web-34
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -318,6 +353,7 @@ services:
   sleep: false
 - name: web-35
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -327,6 +363,7 @@ services:
   sleep: false
 - name: web-36
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -336,6 +373,7 @@ services:
   sleep: false
 - name: web-37
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -345,6 +383,7 @@ services:
   sleep: false
 - name: web-38
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -354,6 +393,7 @@ services:
   sleep: false
 - name: web-39
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -363,6 +403,7 @@ services:
   sleep: false
 - name: web-40
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -372,6 +413,7 @@ services:
   sleep: false
 - name: web-41
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -381,6 +423,7 @@ services:
   sleep: false
 - name: web-42
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -390,6 +433,7 @@ services:
   sleep: false
 - name: web-43
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -399,6 +443,7 @@ services:
   sleep: false
 - name: web-44
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -408,6 +453,7 @@ services:
   sleep: false
 - name: web-45
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -417,6 +463,7 @@ services:
   sleep: false
 - name: web-46
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -426,6 +473,7 @@ services:
   sleep: false
 - name: web-47
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -435,6 +483,7 @@ services:
   sleep: false
 - name: web-48
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -444,6 +493,7 @@ services:
   sleep: false
 - name: web-49
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -453,6 +503,7 @@ services:
   sleep: false
 - name: web-50
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -462,6 +513,7 @@ services:
   sleep: false
 - name: web-51
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -471,6 +523,7 @@ services:
   sleep: false
 - name: web-52
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -480,6 +533,7 @@ services:
   sleep: false
 - name: web-53
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -489,6 +543,7 @@ services:
   sleep: false
 - name: web-54
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -498,6 +553,7 @@ services:
   sleep: false
 - name: web-55
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -507,6 +563,7 @@ services:
   sleep: false
 - name: web-56
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -516,6 +573,7 @@ services:
   sleep: false
 - name: web-57
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -525,6 +583,7 @@ services:
   sleep: false
 - name: web-58
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -534,6 +593,7 @@ services:
   sleep: false
 - name: web-59
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -543,6 +603,7 @@ services:
   sleep: false
 - name: web-60
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -552,6 +613,7 @@ services:
   sleep: false
 - name: web-61
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -561,6 +623,7 @@ services:
   sleep: false
 - name: web-62
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -570,6 +633,7 @@ services:
   sleep: false
 - name: web-63
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -579,6 +643,7 @@ services:
   sleep: false
 - name: web-64
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -588,6 +653,7 @@ services:
   sleep: false
 - name: web-65
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -597,6 +663,7 @@ services:
   sleep: false
 - name: web-66
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -606,6 +673,7 @@ services:
   sleep: false
 - name: web-67
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -615,6 +683,7 @@ services:
   sleep: false
 - name: web-68
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -624,6 +693,7 @@ services:
   sleep: false
 - name: web-69
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -633,6 +703,7 @@ services:
   sleep: false
 - name: web-70
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -642,6 +713,7 @@ services:
   sleep: false
 - name: web-71
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -651,6 +723,7 @@ services:
   sleep: false
 - name: web-72
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -660,6 +733,7 @@ services:
   sleep: false
 - name: web-73
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -669,6 +743,7 @@ services:
   sleep: false
 - name: web-74
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -678,6 +753,7 @@ services:
   sleep: false
 - name: web-75
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -687,6 +763,7 @@ services:
   sleep: false
 - name: web-76
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -696,6 +773,7 @@ services:
   sleep: false
 - name: web-77
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -705,6 +783,7 @@ services:
   sleep: false
 - name: web-78
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -714,6 +793,7 @@ services:
   sleep: false
 - name: web-79
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -723,6 +803,7 @@ services:
   sleep: false
 - name: web-80
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -732,6 +813,7 @@ services:
   sleep: false
 - name: web-81
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -741,6 +823,7 @@ services:
   sleep: false
 - name: web-82
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -750,6 +833,7 @@ services:
   sleep: false
 - name: web-83
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -759,6 +843,7 @@ services:
   sleep: false
 - name: web-84
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -768,6 +853,7 @@ services:
   sleep: false
 - name: web-85
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -777,6 +863,7 @@ services:
   sleep: false
 - name: web-86
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -786,6 +873,7 @@ services:
   sleep: false
 - name: web-87
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -795,6 +883,7 @@ services:
   sleep: false
 - name: web-88
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -804,6 +893,7 @@ services:
   sleep: false
 - name: web-89
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -813,6 +903,7 @@ services:
   sleep: false
 - name: web-90
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -822,6 +913,7 @@ services:
   sleep: false
 - name: web-91
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -831,6 +923,7 @@ services:
   sleep: false
 - name: web-92
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -840,6 +933,7 @@ services:
   sleep: false
 - name: web-93
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -849,6 +943,7 @@ services:
   sleep: false
 - name: web-94
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -858,6 +953,7 @@ services:
   sleep: false
 - name: web-95
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -867,6 +963,7 @@ services:
   sleep: false
 - name: web-96
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -876,6 +973,7 @@ services:
   sleep: false
 - name: web-97
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -885,6 +983,7 @@ services:
   sleep: false
 - name: web-98
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -894,6 +993,7 @@ services:
   sleep: false
 - name: web-99
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
@@ -903,6 +1003,7 @@ services:
   sleep: false
 - name: web-100
   run: node index.js
+  private: true
   type: web
   instances: 1
   cpuCores: 0.1
