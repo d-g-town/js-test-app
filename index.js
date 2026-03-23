@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 
-// JSON logger function a
+// JSON logger function 
 function logJSON(level, message, data = {}) {
   const logEntry = {
     timestamp: new Date().toISOString(),
