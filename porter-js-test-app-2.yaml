@@ -1,0 +1,18 @@
+version: v2
+name: js-test-app-2
+services:
+- name: web
+  run: node index.js
+  type: web
+  instances: 1
+  cpuCores: 0.1
+  ramMegabytes: 400
+  terminationGracePeriodSeconds: 30
+  port: 3000
+  sleep: false
+build:
+  context: ./
+  method: pack
+  builder: heroku/builder:22
+  buildpacks:
+  - heroku/nodejs
