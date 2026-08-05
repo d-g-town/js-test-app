@@ -13,14 +13,14 @@ jobs:
               id: vars
               run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
             - name: Setup porter
-              uses: porter-dev/setup-porter@v0.1.0
+              uses: porter-dev/setup-porter@v0.2.0
             - name: Deploy stack
               timeout-minutes: 30
               run: porter apply
               env:
                 PORTER_APP_NAME: js-test-app
                 PORTER_CLUSTER: "1"
-                PORTER_DEPLOYMENT_TARGET_ID: 0687068f-be7d-4d1d-be0c-053ec458588b
+                PORTER_DEPLOYMENT_TARGET_ID: 78e8474c-ae95-4dcc-b9f7-021e0b0c73dd
                 PORTER_HOST: https://dgtown2.withporter.run
                 PORTER_PROJECT: "1"
                 PORTER_TAG: ${{ steps.vars.outputs.sha_short }}
