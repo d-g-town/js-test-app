@@ -13,7 +13,7 @@ function logJSON(level, message, data = {}) {
 }
 
 // Log application startup
-logJSON("info", "Starting a Tetris application", {
+logJSON("info", "Started a Tetris application", {
   system: {
     node: {
       version: process.version,
